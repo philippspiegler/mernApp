@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 
 function Home() {
   const myFetch = async () => {
@@ -6,6 +6,7 @@ function Home() {
     const myData = await myResponse.json()
     console.log("myData", myData)
   }
+
   useEffect(() => {
     myFetch()
   }, [])
