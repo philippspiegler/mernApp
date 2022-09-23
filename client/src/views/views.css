@@ -1,0 +1,14 @@
+html, body {
+    margin: 0;
+    background-color: #888484;
+}
+
+.card {
+    background-color: #ff9d5c;
+    padding-top: 1.25em;
+    margin: auto;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    width: 50vw;
+    
+}
