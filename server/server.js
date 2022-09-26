@@ -4,6 +4,7 @@ import router from "./routes/carsRoute.js"
 import * as dotenv from "dotenv"
 import mongoose from "mongoose"
 import carsRoute from "./routes/carsRoute.js"
+import historyRoute from "./routes/historyRoute.js"
 dotenv.config()
 const app = express()
 const port = process.env.PORT || 5000
@@ -40,6 +41,7 @@ const startServer = () => {
 const loadRoutes = () => {
   app.use("/users", router)
   app.use("/api/cars", carsRoute)
+  app.use("/api/history", historyRoute)
 }
 
 ;(async function controller() {

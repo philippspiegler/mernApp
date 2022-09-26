@@ -1,7 +1,7 @@
-import carsModel from "../model/wheelsModel.js"
+import carsModel from "../models/wheelsModel.js"
 
 const getAllCars = async (req, res) => {
-  const allCars = await carsModel.find({})
+  const allCars = await carsModel.find({}).populate({ path: "history" })
   console.log("allCars>>>", allCars)
   try {
     if (allCars.length === 0) {
@@ -24,4 +24,15 @@ const getAllCars = async (req, res) => {
   }
 }
 
-export { getAllCars }
+const getCarById = async (req, res) => {
+  console.log("req.params :>> ", req.params)
+  const carById = await carsModel.findById({ _id: req.params.carId })
+  // .populate({ path: "history" })
+  console.log("carById :>> ", carById)
+  //response to front end (fetch it there)
+  res.status(200).json({
+    car: carById,
+  })
+}
+
+export { getAllCars, getCarById }
