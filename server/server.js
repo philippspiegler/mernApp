@@ -1,11 +1,11 @@
 import express from "express"
 import cors from "cors"
 import router from "./routes/carsRoute.js"
-import * as dotenv from "dotenv"
 import mongoose from "mongoose"
 import carsRoute from "./routes/carsRoute.js"
 import historyRoute from "./routes/historyRoute.js"
 import usersRoute from "./routes/usersRoute.js"
+import * as dotenv from "dotenv"
 dotenv.config()
 const app = express()
 const port = process.env.PORT || 5000
