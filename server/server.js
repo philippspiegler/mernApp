@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 import carsRoute from "./routes/carsRoute.js"
 import historyRoute from "./routes/historyRoute.js"
 import usersRoute from "./routes/usersRoute.js"
+import { cloudinaryConfig } from "./config/cloudinaryConfig.js"
 import * as dotenv from "dotenv"
 dotenv.config()
 const app = express()
@@ -23,6 +24,7 @@ const addMiddlewares = () => {
     credentials: true,
   }
   app.use(cors(corsOptions))
+  cloudinaryConfig()
 }
 const mongoDBConnection = async () => {
   try {
