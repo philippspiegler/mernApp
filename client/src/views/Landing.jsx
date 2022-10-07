@@ -8,7 +8,7 @@ function Landing({ cars }) {
     <div>
       {cars.map((c, i) => {
         return (
-          <Row key={c._id}>
+          <Row key={i}>
             <Col>
               <Card className="card">
                 <div>

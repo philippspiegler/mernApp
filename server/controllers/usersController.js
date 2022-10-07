@@ -1,5 +1,7 @@
 import userModel from "../models/usersModel.js"
 import { v2 as cloudinary } from "cloudinary"
+import { encryptPassword, verifyPassword } from "../utils/encryptPassword.js"
+import { issueToken } from "../utils/jwt.js"
 
 const uploadUserPicture = async (req, res) => {
   try {
@@ -19,8 +21,75 @@ const uploadUserPicture = async (req, res) => {
   }
 }
 
-const encryptPassword = async (password) => {}
+const signUp = async (req, res) => {
+  console.log("req.body in signUp", req.body)
 
-const signUp = async (req, res) => {}
+  try {
+    const existingUser = await userModel.findOne({ email: req.body.email })
+    console.log("exisitingUser :>> ", existingUser)
+    if (existingUser) {
+      res.status(409).json({ message: "user already exists" })
+    } else {
+      const hashedPassword = await encryptPassword(req.body.password)
+      const newUser = new userModel({
+        userName: req.body.userName,
+        email: req.body.email,
+        password: hashedPassword,
+        avatarPicture: req.body.avatarPicture,
+      })
+      console.log("newUser :>> ", newUser)
+      try {
+        console.log("newUser try  :>> ", newUser)
+        const savedUser = await newUser.save()
+        res.status(201).json({
+          user: {
+            userName: savedUser.userName,
+            email: savedUser.email,
+            avatarPicture: savedUser.avatarPicture,
+          },
+          message: "user registered successfully",
+        })
+      } catch {
+        res.status(501)
+      }
+    }
+  } catch (error) {
+    res.status(500).json({ message: "user already exists", error: error })
+  }
+}
 
-export { signUp, uploadUserPicture }
+const login = async (req, res) => {
+  console.log("req.body :>> ", req.body)
+  try {
+    const existingUser = await userModel.findOne({ email: req.body.email })
+    if (!existingUser) {
+      res.status(401).json({ message: "user not found" })
+    } else {
+      const verified = await verifyPassword(
+        req.body.password,
+        existingUser.password
+      )
+      if (!verified) {
+        res.status(401).json({ message: "wrong password" })
+      }
+      if (verified) {
+        console.log("user is logged in")
+        const token = issueToken(existingUser.id)
+        console.log("token :>> ", token)
+        res.status(201).json({
+          message: "logged in",
+          user: {
+            userName: existingUser.userName,
+            id: existingUser._id,
+            avatarPicture: existingUser.avatarPicture,
+          },
+          token,
+        })
+      }
+    }
+  } catch (error) {
+    // res.status(501).json({ message: "login failed" })
+  }
+}
+
+export { signUp, uploadUserPicture, login }
