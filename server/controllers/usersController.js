@@ -92,4 +92,17 @@ const login = async (req, res) => {
   }
 }
 
-export { signUp, uploadUserPicture, login }
+const getProfile = async (req, res) => {
+  console.log("req.user in getProfile", req.user)
+  try {
+    res.status(201).json({
+      email: req.user.email,
+      userName: req.user.userName,
+      avatarPicture: req.user.avatarPicture,
+    })
+  } catch (error) {
+    res.status(401).json({ msg: "error getting profile", error })
+  }
+}
+
+export { signUp, uploadUserPicture, login, getProfile }

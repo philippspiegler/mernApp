@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
-import getToken from "../../../server/utils/getToken.js"
+import getToken from "../utils/getToken"
+import "./views.css"
+import { Link } from "react-router-dom"
 
 function Login() {
   const [userLogin, setUserLogin] = useState({})
@@ -49,7 +51,7 @@ function Login() {
   const logout = () => {
     localStorage.removeItem("token")
     const token = getToken()
-    console.log("token there logout", token)
+    console.log("token exists for logout", token)
   }
 
   useEffect(() => {
@@ -57,8 +59,8 @@ function Login() {
   }, [user])
 
   return (
-    <div>
-      <div>
+    <div className="login-container">
+      <div className="login-fields">
         <label htmlFor="username">Username</label>
         <input
           id="username"
@@ -68,7 +70,7 @@ function Login() {
           onChange={handleChangeHandler}
         />
       </div>
-      <div>
+      <div className="login-fields">
         <label htmlFor="email">Email</label>
         <input
           type="text"
@@ -78,7 +80,7 @@ function Login() {
           onChange={handleChangeHandler}
         />
       </div>
-      <div>
+      <div className="login-fields">
         <label htmlFor="password">Password</label>
         <input
           type="text"
@@ -89,7 +91,6 @@ function Login() {
         />
       </div>
       <button onChange={login}>login</button>
-      <button>logout</button>
     </div>
   )
 }

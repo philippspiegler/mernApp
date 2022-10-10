@@ -5,6 +5,8 @@ import mongoose from "mongoose"
 import carsRoute from "./routes/carsRoute.js"
 import historyRoute from "./routes/historyRoute.js"
 import usersRoute from "./routes/usersRoute.js"
+import passportConfig from "./config/passportConfig.js"
+import passport from "passport"
 import { cloudinaryConfig } from "./config/cloudinaryConfig.js"
 import * as dotenv from "dotenv"
 dotenv.config()
@@ -25,7 +27,11 @@ const addMiddlewares = () => {
   }
   app.use(cors(corsOptions))
   cloudinaryConfig()
+
+  app.use(passport.initialize())
+  passportConfig(passport)
 }
+
 const mongoDBConnection = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI)

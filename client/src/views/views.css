@@ -1,14 +1,52 @@
 html, body {
     margin: 0;
-    background-color: #888484;
+    background-color: #f7f0f0;
+}
+
+span {
+    color: rgb(186, 66, 255);
+}
+
+
+
+img {
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+.login-button {
+    display: flex;
+    margin: auto;
+    color: black;
+    background-color: pink;
+}
+
+
+.login-container {
+    display: block;
+    text-align: center;
+}
+
+.login-fields {
+    padding: 0.3em;
+}
+
+
+.landing {
+ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ width: 100%;
+ margin-top: 2em;
+ text-align: center;
 }
 
 .card {
-    background-color: #ff9d5c;
+    background-color: #7dacb3d3;
     padding-top: 1.25em;
+    padding-left: 1em;
     margin: auto;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    width: 50vw;
-    
+    width: 30vw;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
