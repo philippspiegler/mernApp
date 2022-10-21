@@ -82,8 +82,9 @@ const login = async (req, res) => {
             userName: existingUser.userName,
             id: existingUser._id,
             avatarPicture: existingUser.avatarPicture,
+
+            token,
           },
-          token,
         })
       }
     }

@@ -4,5 +4,6 @@ const router = express.Router()
 
 router.get("/all", getAllCars)
 router.get("/:carId", getCarById) // route to get car info by car id
+// router.post("/:updateUser", updateUser) S3E3
 
 export default router

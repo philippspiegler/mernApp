@@ -1,97 +1,90 @@
-import { useState, useEffect } from "react"
-import getToken from "../utils/getToken"
+import { useState } from "react"
+import { Form, FormLabel, Button } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
+import NavBar from "../components/NavBar"
+import Main from "./Main"
 import "./views.css"
-import { Link } from "react-router-dom"
 
 function Login() {
-  const [userLogin, setUserLogin] = useState({})
-
+  const [userLogin, setuserLogin] = useState({})
+  const redirect = useNavigate()
   const handleChangeHandler = (e) => {
-    setUserLogin({ ...userLogin, [e.target.name]: e.target.value })
-    console.log("userLogin", userLogin)
+    e.preventDefault()
+    setuserLogin({ ...userLogin, [e.target.name]: e.target.value })
   }
 
   const login = async () => {
-    const urlencoded = new URLSearchParams()
-    urlencoded.append("userName", "test")
-    urlencoded.append("password", "123456")
-    urlencoded.append("email", "phil@test.com")
+    let urlencoded = new URLSearchParams()
+    urlencoded.append("email", userLogin.email)
+    urlencoded.append("password", userLogin.password)
 
-    var requestOptions = {
+    const requestOptions = {
       method: "POST",
       body: urlencoded,
     }
-
     try {
-      const response = await fetch("http://localhost:5000/api/users/login")
+      const response = await fetch(
+        "http://localhost:5000/users/login",
+        requestOptions
+      )
       const result = await response.json()
-      const token = await result.token
+      console.log("results in login try", result)
+      if (result.message === "user not found") {
+        alert("no account with this username")
+      }
+      if (result.message === "wrong password") {
+        alert("wrong password")
+      }
+      const token = result.user.token
+      console.log("token in login :>> ", token)
 
-      console.log("result :>> ", result)
+      if (token) {
+        localStorage.setItem("token", token)
+        redirect("/main")
+      }
     } catch (error) {
-      console.log("login error", error)
-    }
-  }
-
-  const [user, setUser] = useState(null)
-
-  const isUserLoggedIn = () => {
-    const token = getToken()
-
-    if (token) {
-      console.log("user is logged in")
-      setUser(true)
-    }
-    if (!token) {
-      console.log("user not logged in")
-      setUser(false)
+      console.log("error in login fetch")
     }
   }
 
   const logout = () => {
     localStorage.removeItem("token")
-    const token = getToken()
-    console.log("token exists for logout", token)
+    console.log("logout :>> ", logout)
   }
 
-  useEffect(() => {
-    isUserLoggedIn()
-  }, [user])
-
   return (
-    <div className="login-container">
-      <div className="login-fields">
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          value={userLogin.userName ? userLogin.userName : ""}
-          name="userName"
-          onChange={handleChangeHandler}
-        />
+    <>
+      <NavBar />
+      <div className="login-form">
+        <h2 className="title-landing">Login</h2>
+        <Form.Group>
+          <Form.Label>email</Form.Label>
+          <Form.Control
+            id="email"
+            type="email"
+            name="email"
+            value={userLogin.email ? userLogin.email : ""}
+            onChange={handleChangeHandler}
+          />
+        </Form.Group>
+        <br />
+        <Form.Group>
+          <Form.Label>password</Form.Label>
+          <Form.Control
+            id="password"
+            type="password"
+            name="password"
+            value={userLogin.password ? userLogin.password : ""}
+            onChange={handleChangeHandler}
+          />
+        </Form.Group>
+
+        <Button className="login-button" onClick={login}>
+          login
+        </Button>
+        <Button onClick={logout}>logout</Button>
       </div>
-      <div className="login-fields">
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          value={userLogin.email ? userLogin.email : ""}
-          onChange={handleChangeHandler}
-        />
-      </div>
-      <div className="login-fields">
-        <label htmlFor="password">Password</label>
-        <input
-          type="text"
-          name="password"
-          id="password"
-          value={userLogin.password ? userLogin.password : ""}
-          onChange={handleChangeHandler}
-        />
-      </div>
-      <button onChange={login}>login</button>
-    </div>
+    </>
   )
 }
 

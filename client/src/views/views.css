@@ -1,52 +1,61 @@
 html, body {
-    margin: 0;
-    background-color: #f7f0f0;
+margin: 0;
+box-sizing: border-box; 
 }
 
-span {
-    color: rgb(186, 66, 255);
-}
-
-
-
-img {
+h2 {
+    font-family: "Faster One", sans-serif;
+    font-size: 37px;
     display: flex;
     justify-content: center;
-    margin-top: 3em;
+    margin-top: 0.7em;
+    margin-bottom: 1em;
 }
 
-.login-button {
-    display: flex;
-    margin: auto;
-    color: black;
-    background-color: pink;
-}
-
-
-.login-container {
-    display: block;
+h4 {
     text-align: center;
 }
 
-.login-fields {
-    padding: 0.3em;
+/* span {
+    display: block;
+} */
+
+.landing-main {
+
 }
 
+.title-landing {
+    font-family: "Faster One", sans-serif;
+    display: flex;
+    justify-content: center;
+}
 
-.landing {
- font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
- width: 100%;
- margin-top: 2em;
- text-align: center;
+.login-form {
+    width: 50vw;
+    margin: auto;
+}
+
+.login-button {
+    margin: 0.8em 0.5em;
+    border-style: none;
+    color: black;
+    background-color: #a6ffb9;
+}
+
+.login-button:hover {
+    background-color: lightslategray;
+}
+
+.landing-slogan{
+
+}
+
+.signup-form {
+    width: 50vw;
+    margin: auto;
 }
 
 .card {
-    background-color: #7dacb3d3;
-    padding-top: 1.25em;
-    padding-left: 1em;
-    margin: auto;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    width: 30vw;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    margin: 0.7em;
 }

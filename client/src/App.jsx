@@ -1,24 +1,22 @@
 // import Home from "./views/Home"
 import Landing from "./views/Landing"
-import ImgUpload from "./views/ImgUpload"
-import Home from "./views/Home"
+import Main from "./views/Main"
+import Register from "./views/Register"
 import Login from "./views/Login"
-import Profile from "./views/Profile"
+import UserProfile from "./views/UserProfile"
 import "./App.css"
-import { BrowserRouter } from "react-router-dom"
-import { Route, Routes } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="home" element={<Home />} />
-          {/* <Fetch /> */}
           <Route path="/" element={<Landing />} />
-          <Route path="login" element={<Login />} />
-          {/* <Profile />
-      <ImgUpload /> */}
+          <Route path="login" element={<Login />}></Route>
+          <Route path="signup" element={<Register />}></Route>
+          <Route path="profile" element={<UserProfile />}></Route>
+          <Route path="main" element={<Main />}></Route>
         </Routes>
       </BrowserRouter>
     </>

@@ -19,7 +19,5 @@ const userSchema = new mongoose.Schema({
   },
 })
 
-//plural in schema name?
-
 const userModel = mongoose.model("user", userSchema)
 export default userModel

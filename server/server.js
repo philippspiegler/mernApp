@@ -48,10 +48,10 @@ const startServer = () => {
 }
 
 const loadRoutes = () => {
-  app.use("/users", router)
-  app.use("/api/cars", carsRoute)
-  app.use("/api/history", historyRoute)
-  app.use("/api/users", usersRoute)
+  // app.use("/users", router)
+  app.use("/cars", carsRoute)
+  app.use("/history", historyRoute)
+  app.use("/users", usersRoute)
 }
 
 ;(async function controller() {
@@ -60,33 +60,3 @@ const loadRoutes = () => {
   loadRoutes()
   startServer()
 })()
-
-// app.use(express.json())
-// app.use(
-//   express.urlencoded({
-//     extended: true,
-//   })
-// )
-// app.use(cors())
-
-// const port = process.env.PORT || 5000
-// app.listen(port, () => {
-//   console.log("Server is running on " + port)
-// })
-
-// app.use("/app", router)
-// // console.log("router")
-// console.log("process.env>>>", process.env)
-// mongoose
-//   .connect(process.env.MONGO_URI)
-//   .then(() => console.log("Connection to Mongo DB established"))
-//   .catch((err) => console.log(err))
-
-// const loadRoutes = () => {
-//   app.use("/car", router)
-//   app.use("/api/cars", carsRoute)
-// }
-
-// ;(async function controller() {
-//   loadRoutes()
-// })()

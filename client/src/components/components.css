@@ -1,0 +1,14 @@
+.avatar-form {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-button {
+    background-color: #a6ffb9;
+    color: #000;
+    border-style: none;
+}
+
+.avatar-button:hover {
+    background-color: lightslategray;
+}
