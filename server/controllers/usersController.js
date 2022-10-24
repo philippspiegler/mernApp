@@ -2,6 +2,7 @@ import userModel from "../models/usersModel.js"
 import { v2 as cloudinary } from "cloudinary"
 import { encryptPassword, verifyPassword } from "../utils/encryptPassword.js"
 import { issueToken } from "../utils/jwt.js"
+import carsModel from "../models/wheelsModel.js"
 
 const uploadUserPicture = async (req, res) => {
   try {
@@ -96,13 +97,20 @@ const login = async (req, res) => {
 const getProfile = async (req, res) => {
   console.log("req.user in getProfile", req.user)
   try {
-    res.status(201).json({
-      email: req.user.email,
-      userName: req.user.userName,
-      avatarPicture: req.user.avatarPicture,
-    })
+    const existingUser = await userModel.findOne({ _id: req.user._id })
+    res.status(201).json(existingUser)
   } catch (error) {
     res.status(401).json({ msg: "error getting profile", error })
+  }
+}
+
+const writeComment = async (req, res) => {
+  console.log("req in writeComment :>> ", writeComment)
+  try {
+    const comment = await carsModel.findOne({ comments: req.params.comments })
+    res.status(201).json(comment)
+  } catch (error) {
+    res.status(401).json({ msg: "no comments yet for this car" })
   }
 }
 

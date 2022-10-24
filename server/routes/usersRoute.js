@@ -14,5 +14,6 @@ router.post("/imageUpload", multerUploads.single("image"), uploadUserPicture)
 router.post("/signUp", signUp)
 router.post("/login", login)
 router.get("/profile", jwtAuth, getProfile)
+router.get("/profile/:_id", jwtAuth, getProfile)
 
 export default router

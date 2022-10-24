@@ -5,6 +5,16 @@ import { Button } from "react-bootstrap"
 import "./views.css"
 
 function Landing() {
+  //this goes in AuthContext
+  const isUserLoggedIn = () => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   return (
     <>
       <NavBar />
@@ -18,13 +28,17 @@ function Landing() {
           A website to <span>check out</span> and <span>add your own</span> cool
           and quirky cars!
         </h4>
+        {!isUserLoggedIn() && (
+          <Link to="login" style={{ textDecoration: "none" }}>
+            <Button className="log-button">login</Button>
+          </Link>
+        )}
+        {!isUserLoggedIn() && (
+          <Link to="signup" style={{ textDecoration: "none" }}>
+            <Button className="log-button">sign up</Button>
+          </Link>
+        )}
       </div>
-      <Link to="login" style={{ textDecoration: "none" }}>
-        <Button className="login-button">login</Button>
-      </Link>
-      <Link to="signup" style={{ textDecoration: "none" }}>
-        <Button className="login-button">sign up</Button>
-      </Link>
     </>
   )
 }

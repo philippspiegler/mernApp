@@ -40,10 +40,20 @@ function Login() {
 
       if (token) {
         localStorage.setItem("token", token)
+        //isUserLoggedIn(true)
         redirect("/main")
       }
     } catch (error) {
       console.log("error in login fetch")
+    }
+  }
+
+  const isUserLoggedIn = () => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      return true
+    } else {
+      return false
     }
   }
 
@@ -60,6 +70,7 @@ function Login() {
         <Form.Group>
           <Form.Label>email</Form.Label>
           <Form.Control
+            className="form-control"
             id="email"
             type="email"
             name="email"
@@ -71,6 +82,7 @@ function Login() {
         <Form.Group>
           <Form.Label>password</Form.Label>
           <Form.Control
+            className="form-control"
             id="password"
             type="password"
             name="password"
@@ -79,10 +91,9 @@ function Login() {
           />
         </Form.Group>
 
-        <Button className="login-button" onClick={login}>
+        <Button className="log-button" onClick={login}>
           login
         </Button>
-        <Button onClick={logout}>logout</Button>
       </div>
     </>
   )

@@ -31,11 +31,23 @@ function Register() {
       )
       const results = response.json()
       console.log("results :>> ", results)
+      if (results.message === "user registered successfully") {
+        redirect("/signup")
+      }
       if (results.message === "user already exists") {
         alert("this user already exists")
       }
     } catch (error) {
       console.log("error in signup fetch", error)
+    }
+  }
+
+  const isUserLoggedIn = () => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      return true
+    } else {
+      return false
     }
   }
 
@@ -49,6 +61,7 @@ function Register() {
         <Form.Group>
           <Form.Label>username</Form.Label>
           <Form.Control
+            className="form-control"
             id="username"
             name="userName"
             type="text"
@@ -60,6 +73,7 @@ function Register() {
         <Form.Group>
           <Form.Label>email</Form.Label>
           <Form.Control
+            className="form-control"
             id="email"
             name="email"
             type="email"
@@ -71,6 +85,7 @@ function Register() {
         <Form.Group>
           <Form.Label>password</Form.Label>
           <Form.Control
+            className="form-control"
             id="password"
             name="password"
             type="password"
@@ -79,7 +94,7 @@ function Register() {
           />
         </Form.Group>
 
-        <Button className="login-button" onClick={signUp}>
+        <Button className="log-button" onClick={signUp}>
           sign up
         </Button>
       </div>

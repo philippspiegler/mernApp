@@ -1,20 +1,24 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { Form, FormLabel, Button } from "react-bootstrap"
 import NavBar from "../components/NavBar"
 import ImgUpload from "../components/ImgUpload"
 import "./views.css"
+import { redirect } from "react-router-dom"
 
 function UserProfile() {
+  const redirect = useNavigate()
   const [userProfile, setUserProfile] = useState({})
 
   const profile = async () => {
-    let urlencoded = new URLSearchParams()
-    urlencoded.append("email", userProfile.email)
-    urlencoded.append("name", userProfile.name)
+    const token = localStorage.getItem("token")
+    console.log("token :>> ", token)
+    let myHeaders = new Headers()
+    myHeaders.append("Authorization", `Bearer ${token}`)
 
     const requestOptions = {
       method: "GET",
-      body: urlencoded,
+      headers: myHeaders,
     }
 
     try {
@@ -22,15 +26,25 @@ function UserProfile() {
         "http://localhost:5000/users/profile",
         requestOptions
       )
-      const result = response.json()
+      const result = await response.json()
+      console.log("result in user profile fetch>>", result)
       setUserProfile(result)
     } catch (error) {
-      console.log("error getting profile", error)
+      console.log("error getting profile>>", error)
     }
   }
-  // const logout = () => {
-  //   localStorage.removeItem("token")
-  // }
+  const isUserLoggedIn = () => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      return true
+    } else {
+      return false
+    }
+  }
+  const logout = () => {
+    localStorage.removeItem("token")
+    redirect("/")
+  }
 
   useEffect(() => {
     profile()
@@ -40,11 +54,21 @@ function UserProfile() {
     <>
       <NavBar />
       <h2>my profile</h2>
-      <div></div>
+      <div className="profile">
+        <p>
+          my username: <b>{userProfile.userName}</b>
+        </p>
+        <p>
+          my email: <b>{userProfile.email}</b>
+        </p>
+        <p>{userProfile.avatarPicture}</p>
+      </div>
       <ImgUpload />
-      {/* <Button className="login-button" onClick={profile}>
-        view profile
-      </Button> */}
+      {isUserLoggedIn() && (
+        <Button className="logout-button" onClick={logout}>
+          logout
+        </Button>
+      )}
     </>
   )
 }

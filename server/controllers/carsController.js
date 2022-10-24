@@ -26,8 +26,9 @@ const getAllCars = async (req, res) => {
 
 const getCarById = async (req, res) => {
   console.log("req.params :>> ", req.params)
-  const carById = await carsModel.findById({ _id: req.params.carId })
-  // .populate({ path: "history" })
+  const carById = await carsModel
+    .findById({ _id: req.params.carId })
+    .populate({ path: "history" })
   console.log("carById :>> ", carById)
   //response to front end (fetch it there)
   res.status(200).json({
