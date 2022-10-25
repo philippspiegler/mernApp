@@ -88,3 +88,13 @@ h4 {
     flex-direction: column;
     align-items: center;
 }
+
+.details-display {
+     width: 75vw;
+     height: 75vh;
+     background-color: lightgray;
+     margin: auto;
+     color: black;
+     margin-top: 1em;
+     padding: 2em 5em;
+}

@@ -1,12 +1,13 @@
 import React from "react"
 import { Row, Col, Card, Button } from "react-bootstrap"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import "./views.css"
 import NavBar from "../components/NavBar"
+import SingleCar from "../components/SingleCar"
 
 function Main() {
   const [cars, setCars] = useState([])
-  const [comment, setComment] = useState("")
 
   const myFetch = async () => {
     const myResponse = await fetch("http://localhost:5000/cars/all")
@@ -17,17 +18,10 @@ function Main() {
     // console.log("cars :>> ", cars)
   }
 
-  const postComment = () => {
-    setComment()
-    console.log("comment :>> ", setComment)
-  }
-
   useEffect(() => {
     myFetch()
-    console.log("useEffect called")
   }, [])
 
-  // const {cars} = useCustomFetch()
   return (
     <>
       <div className="main-display">
@@ -35,26 +29,21 @@ function Main() {
           <NavBar />
         </div>
         <div>
-          {cars.map((c, i) => {
-            return (
-              <Row key={i}>
-                <Col>
-                  <Card className="card">
-                    <div>
-                      <h4>{c.model}</h4>
-                      <h5>{c.make}</h5>
-                      <p>{c.year}</p>
-                      <p>{c.history.history}</p>
-                    </div>
-                    <div className="comment">
-                      {/* <textarea></textarea> */}
-                      <Button onClick={postComment}>post my comment</Button>
-                    </div>
-                  </Card>
-                </Col>
-              </Row>
-            )
-          })}
+          {cars &&
+            cars.map((c, i) => {
+              return (
+                <Row key={i}>
+                  <Col>
+                    <Card className="card">
+                      <SingleCar carInfo={c} />
+                      <Link to={`${c._id}`} state={c}>
+                        {c.model}
+                      </Link>
+                    </Card>
+                  </Col>
+                </Row>
+              )
+            })}
         </div>
       </div>
     </>

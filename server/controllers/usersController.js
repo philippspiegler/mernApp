@@ -90,7 +90,7 @@ const login = async (req, res) => {
       }
     }
   } catch (error) {
-    // res.status(501).json({ message: "login failed" })
+    res.status(501).json({ message: "login failed" })
   }
 }
 

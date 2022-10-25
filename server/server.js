@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 import carsRoute from "./routes/carsRoute.js"
 import historyRoute from "./routes/historyRoute.js"
 import usersRoute from "./routes/usersRoute.js"
+import commentsRoute from "./routes/commentsRoute.js"
 import passportConfig from "./config/passportConfig.js"
 import passport from "passport"
 import { cloudinaryConfig } from "./config/cloudinaryConfig.js"
@@ -52,6 +53,7 @@ const loadRoutes = () => {
   app.use("/cars", carsRoute)
   app.use("/history", historyRoute)
   app.use("/users", usersRoute)
+  app.use("/comments", commentsRoute)
 }
 
 ;(async function controller() {
