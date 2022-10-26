@@ -40,7 +40,6 @@ function Login() {
 
       if (token) {
         localStorage.setItem("token", token)
-        //isUserLoggedIn(true)
         redirect("/main")
       }
     } catch (error) {

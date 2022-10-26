@@ -7,7 +7,7 @@ function ImgUpload() {
   const [selectedFile, setSelectedFile] = useState(null)
   const [newUser, setNewUser] = useState({})
 
-  const handleChangeHandler = (e) => {
+  const attachFileHandler = (e) => {
     setSelectedFile(e.target.files[0])
   }
 
@@ -20,15 +20,36 @@ function ImgUpload() {
     var requestOptions = {
       method: "POST",
       body: formData,
-      redirect: "follow",
     }
+    try {
+      const response = await fetch(
+        "http://localhost:5000/users/imageUpload",
+        requestOptions
+      )
+      const result = await response.json()
+      console.log("result", result)
+      setNewUser({ ...newUser, avatarPicture: result.imageUrl })
+    } catch (error) {}
   }
+
   return (
     <>
+      {newUser.avatarPicture && (
+        <img
+          className="avatar-img"
+          style={{
+            width: "250px",
+            height: "200px",
+            borderRadius: "50%",
+          }}
+          src={newUser.avatarPicture}
+          alt="avatar"
+        />
+      )}
       <Form className="avatar-form">
-        <input type="file"></input>
+        <input type="file" onChange={attachFileHandler} />
         <Button className="avatar-button" onClick={submitForm}>
-          upload avatar
+          upload picture
         </Button>
       </Form>
     </>

@@ -32,7 +32,7 @@ function Register() {
       const results = response.json()
       console.log("results :>> ", results)
       if (results.message === "user registered successfully") {
-        redirect("/signup")
+        redirect("/login")
       }
       if (results.message === "user already exists") {
         alert("this user already exists")

@@ -12,7 +12,7 @@ function UserProfile() {
 
   const profile = async () => {
     const token = localStorage.getItem("token")
-    console.log("token :>> ", token)
+    // console.log("token :>> ", token)
     let myHeaders = new Headers()
     myHeaders.append("Authorization", `Bearer ${token}`)
 

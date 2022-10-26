@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import Comments from "../components/Comments"
 import "./views.css"
 import { useLocation, useParams } from "react-router-dom"
+import ImgUpload from "../components/ImgUpload"
 
 function Details() {
   const [cars, setCars] = useState([])
@@ -34,22 +35,16 @@ function Details() {
       <div className="details-display">
         <p>
           <b>{cars?.model}</b>
+          <ImgUpload />
         </p>
         <p>{cars?.make}</p>
         <p>{cars?.year}</p>
-        {carData &&
-          carData.state.messages.map((msg) => {
-            return (
-              <div>
-                <p>{msg.text}</p>
-              </div>
-            )
-          })}
 
         <p>
           <i>history:</i> {cars?.history?.history}
         </p>
         <Comments />
+        <p>{carData && carData.state._id}</p>
       </div>
     </>
   )

@@ -6,6 +6,7 @@ const carsSchema = new mongoose.Schema({
   year: { type: Number },
   image: { type: String, required: true },
   history: { type: mongoose.Schema.Types.ObjectId, ref: "story" },
+  image: { type: String },
   comments: {
     type: Array,
     comment: {

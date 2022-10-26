@@ -35,8 +35,8 @@ function Main() {
                 <Row key={i}>
                   <Col>
                     <Card className="card">
-                      <SingleCar carInfo={c} />
-                      <Link to={`${c._id}`} state={c}>
+                      {/* <SingleCar carInfo={c} /> */}
+                      <Link className="link-details" to={`${c._id}`} state={c}>
                         {c.model}
                       </Link>
                     </Card>

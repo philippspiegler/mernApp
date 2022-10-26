@@ -4,8 +4,7 @@ function SingleCar({ carInfo }) {
   console.log("carInfo", carInfo)
   return (
     <div>
-      <h2>Single car</h2>
-      <p>{carInfo.model}</p>
+      <h2>{carInfo.model}</h2>
     </div>
   )
 }
