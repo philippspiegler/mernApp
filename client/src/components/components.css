@@ -11,6 +11,7 @@
 
 .avatar-button:hover {
     background-color: lightslategray;
+    color: black;
 }
 
 .nav-title {
