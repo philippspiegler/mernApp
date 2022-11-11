@@ -3,7 +3,6 @@ import NavBar from "../components/NavBar"
 import { Row, Col, Card, Button } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import Comments from "../components/Comments"
-import "./views.css"
 import { useLocation, useParams } from "react-router-dom"
 import ImgUpload from "../components/ImgUpload"
 

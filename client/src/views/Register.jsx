@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Form, FormLabel, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import NavBar from "../components/NavBar"
-import "./views.css"
 
 function Register() {
   const [newUser, setNewUser] = useState({})
@@ -56,12 +55,16 @@ function Register() {
   return (
     <>
       <NavBar />
-      <div className="signup-form">
+      <div className="signup-forms">
         <h2 className="title-landing">Sign Up</h2>
         <Form.Group>
           <Form.Label>username</Form.Label>
           <Form.Control
-            className="form-control"
+            style={{
+              boxShadow: "none",
+              backgroundColor: "lightgray",
+              borderStyle: "none",
+            }}
             id="username"
             name="userName"
             type="text"
@@ -73,7 +76,11 @@ function Register() {
         <Form.Group>
           <Form.Label>email</Form.Label>
           <Form.Control
-            className="form-control"
+            style={{
+              boxShadow: "none",
+              backgroundColor: "lightgray",
+              borderStyle: "none",
+            }}
             id="email"
             name="email"
             type="email"
@@ -85,7 +92,11 @@ function Register() {
         <Form.Group>
           <Form.Label>password</Form.Label>
           <Form.Control
-            className="form-control"
+            style={{
+              boxShadow: "none",
+              backgroundColor: "lightgray",
+              borderStyle: "none",
+            }}
             id="password"
             name="password"
             type="password"
@@ -94,7 +105,7 @@ function Register() {
           />
         </Form.Group>
 
-        <Button className="log-button" onClick={signUp}>
+        <Button className="signup-button" onClick={signUp}>
           sign up
         </Button>
       </div>

@@ -1,7 +1,6 @@
 import React from "react"
 import { useState } from "react"
 import { Button, Form } from "react-bootstrap"
-import "./components.css"
 
 function ImgUpload() {
   const [selectedFile, setSelectedFile] = useState(null)
@@ -39,8 +38,8 @@ function ImgUpload() {
           className="avatar-img"
           style={{
             width: "250px",
-            height: "200px",
-            borderRadius: "50%",
+            height: "170px",
+            borderRadius: "10px",
           }}
           src={newUser.avatarPicture}
           alt="avatar"

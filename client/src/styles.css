@@ -1,0 +1,41 @@
+html, body {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.button {
+    background-color: #0ebb9e;
+    border-style: none;
+    margin-left: 1em;
+}
+
+.button:hover{
+    background-color:  #0ebb9ed5;
+}
+
+/*signup*/
+
+.signup-forms {
+    width: 35vw;
+    margin: auto;
+    margin-top: 3em;
+    padding: 1em;
+    text-decoration: none;
+
+}
+
+.signup-button {
+    background-color: #0ebb9e;
+    border-style: none;
+    margin-top: 1em;
+}
+
+.signup-button:hover{
+    background-color:  #0ebb9ed5;
+}
+
+.signup-fcontrol {
+    border-style: none;
+    box-shadow: none;
+    background-color: lightgray;
+}

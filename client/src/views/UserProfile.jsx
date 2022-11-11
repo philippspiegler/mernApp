@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 import { Form, FormLabel, Button } from "react-bootstrap"
 import NavBar from "../components/NavBar"
 import ImgUpload from "../components/ImgUpload"
-import "./views.css"
 import { redirect } from "react-router-dom"
 
 function UserProfile() {

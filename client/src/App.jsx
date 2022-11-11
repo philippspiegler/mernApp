@@ -5,7 +5,6 @@ import Register from "./views/Register"
 import Login from "./views/Login"
 import UserProfile from "./views/UserProfile"
 import Details from "./views/Details"
-import "./App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 function App() {

@@ -27,9 +27,7 @@ function Comments() {
     }
   }
 
-  const postComment = (e) => {
-    e.target.value.push()
-  }
+  const commentTime = new Date()
 
   useEffect(() => {
     writeComment()
@@ -44,26 +42,29 @@ function Comments() {
           borderRadius: "25px",
         }}
       >
-        <p>write a comment:</p>
+        <p style={{ fontSize: "25px" }}>Comments</p>
         <Form
           onSubmit={(e) => {
             console.log(e.target.value)
           }}
         >
           <Form.Control type="text" placeholder="your comment" />
-          <Button className="avatar-button" onClick={writeComment}>
-            send comment
+          <Button className="button avatar-button" onClick={writeComment}>
+            post
           </Button>
         </Form>
         <p
           style={{
             marginTop: "10px",
-            backgroundColor: "#9fff80",
             padding: "10px",
             borderRadius: "15px",
           }}
         >
-          <i>{comments[0]?.author}</i> wrote: <br />
+          <i>
+            {comments[0]?.author}
+            <i style={{ color: "lightgray" }}>date here</i>
+          </i>
+          <br />
           {comments[0]?.text}
           <br />
         </p>

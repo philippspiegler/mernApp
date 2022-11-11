@@ -2,7 +2,6 @@ import React from "react"
 import { Row, Col, Card, Button } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import "./views.css"
 import NavBar from "../components/NavBar"
 import SingleCar from "../components/SingleCar"
 
