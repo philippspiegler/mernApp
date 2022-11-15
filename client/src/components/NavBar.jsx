@@ -1,5 +1,5 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import { useState } from "react"
+import { Link, useFetcher } from "react-router-dom"
 import { Button } from "react-bootstrap"
 import { Form } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
@@ -9,7 +9,7 @@ import Navbar from "react-bootstrap/Navbar"
 import NavDropdown from "react-bootstrap/NavDropdown"
 import "../styles.css"
 
-function NavBar() {
+function NavBar({ searchCar, setSearchCar }) {
   const redirect = useNavigate()
   const isUserLoggedIn = () => {
     const token = localStorage.getItem("token")
@@ -20,14 +20,31 @@ function NavBar() {
     }
   }
 
+  const handleSearchSubmit = async (e) => {
+    e.preventDefault()
+    // console.log("search input")
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    }
+
+    const searchAllCars = await fetch(
+      "http://localhost:5000/cars/all",
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error))
+  }
+
   const logout = () => {
     localStorage.removeItem("token")
     redirect("/")
   }
-
+  console.log("searchCar :>> ", searchCar)
   return (
     <div>
-      <Navbar expand="lg">
+      <Navbar expand="lg" bg="light">
         <Container>
           <Navbar.Brand href="/">Cool Cars</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -48,7 +65,7 @@ function NavBar() {
                   </Link>
                 )}
               </Nav.Link>
-              <Form>
+              <Form onSubmit={handleSearchSubmit}>
                 <Form.Control
                   style={{
                     boxShadow: "none",
@@ -58,6 +75,8 @@ function NavBar() {
                   size="md"
                   type="text"
                   placeholder="Search for cars"
+                  value={searchCar}
+                  onChange={(e) => setSearchCar(e.target.value)}
                 />
               </Form>
               <Nav.Link href="">

@@ -3,6 +3,7 @@ html, body {
     box-sizing: border-box;
 }
 
+
 .button {
     background-color: #0ebb9e;
     border-style: none;
@@ -11,6 +12,10 @@ html, body {
 
 .button:hover{
     background-color:  #0ebb9ed5;
+}
+
+.button:active {
+    background-color: #0ebb9e;
 }
 
 /*signup*/
@@ -34,8 +39,99 @@ html, body {
     background-color:  #0ebb9ed5;
 }
 
+.signup-button:active {
+    background-color: #0ebb9e;
+}
+
 .signup-fcontrol {
     border-style: none;
     box-shadow: none;
     background-color: lightgray;
 }
+
+/*Landing Display*/
+
+.car-display {
+    display: grid;
+    grid-template-columns: repeat(4, 3fr);
+    padding: 2em;
+}
+
+.car-display-card {
+    align-items: center;
+    margin: 2em;
+}
+
+
+/*Img Upload Component*/
+
+.img-upload-button {
+   background-color:  #0ebb9e;
+   border-style: none;
+}
+
+.img-upload-button:hover{
+    background-color:  #0ebb9ed5;
+}
+
+.img-upload-button:active {
+    background-color: #0ebb9e;
+}
+
+/*Details Page*/
+
+.details-display {
+   width: 50em;
+   margin: auto;
+   margin-top: 2em;
+}
+
+/*Comment component*/
+
+.comment-fcontrol {
+    width: 40vw;
+    border-style: none;
+    box-shadow: none;
+    background-color: lightgray;
+}
+
+.comment-button {
+    background-color:  #0ebb9e;
+    border-style: none;
+    margin-top: 1em;
+ }
+ 
+ .comment-button:hover{
+     background-color:  #0ebb9ed5;
+ }
+
+ .comment-button:active {
+    background-color: #0ebb9e;
+}
+
+/*User Profile*/
+
+.profile-div {
+    padding-top: 2em;
+    width: 50vw;
+    margin: auto;
+}
+
+
+.logout-button {
+    margin-top: 2em;
+    background-color:  #0ebb9e;
+    border-style: none;
+ }
+ 
+ .logout-button:hover{
+     background-color:  #0ebb9ed5;
+ }
+ 
+ .logout-button:active {
+     background-color: #0ebb9e;
+ }
+
+ .profile-td {
+    padding-left: 1em;
+ }

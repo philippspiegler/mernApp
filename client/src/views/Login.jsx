@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Form, FormLabel, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import NavBar from "../components/NavBar"
-import Main from "./Main"
+import Main from "../components/Main"
 
 function Login() {
   const [userLogin, setuserLogin] = useState({})
@@ -39,7 +39,7 @@ function Login() {
 
       if (token) {
         localStorage.setItem("token", token)
-        redirect("/main")
+        redirect("/")
       }
     } catch (error) {
       console.log("error in login fetch")
@@ -63,14 +63,17 @@ function Login() {
   return (
     <>
       <NavBar />
-      <div className="login-form">
+      <div className="signup-forms">
         <h2 className="title-landing">Login</h2>
         <Form.Group>
           <Form.Label>email</Form.Label>
           <Form.Control
-            className="form-control"
+            style={{
+              boxShadow: "none",
+              backgroundColor: "lightgray",
+              borderStyle: "none",
+            }}
             id="email"
-            type="email"
             name="email"
             value={userLogin.email ? userLogin.email : ""}
             onChange={handleChangeHandler}
@@ -80,7 +83,11 @@ function Login() {
         <Form.Group>
           <Form.Label>password</Form.Label>
           <Form.Control
-            className="form-control"
+            style={{
+              boxShadow: "none",
+              backgroundColor: "lightgray",
+              borderStyle: "none",
+            }}
             id="password"
             type="password"
             name="password"
@@ -89,7 +96,7 @@ function Login() {
           />
         </Form.Group>
 
-        <Button className="log-button" onClick={login}>
+        <Button className="signup-button" onClick={login}>
           login
         </Button>
       </div>

@@ -27,7 +27,7 @@ function Comments() {
     }
   }
 
-  const commentTime = new Date()
+  const newComment = async () => {}
 
   useEffect(() => {
     writeComment()
@@ -36,6 +36,7 @@ function Comments() {
   return (
     <>
       <div
+        className="comment-section"
         style={{
           backgroundColor: "white",
           padding: "1em",
@@ -45,11 +46,15 @@ function Comments() {
         <p style={{ fontSize: "25px" }}>Comments</p>
         <Form
           onSubmit={(e) => {
-            console.log(e.target.value)
+            comments.push()
           }}
         >
-          <Form.Control type="text" placeholder="your comment" />
-          <Button className="button avatar-button" onClick={writeComment}>
+          <Form.Control
+            className="comment-fcontrol"
+            as="textarea"
+            placeholder="your comment"
+          />
+          <Button className="comment-button" onClick={writeComment}>
             post
           </Button>
         </Form>
@@ -62,7 +67,7 @@ function Comments() {
         >
           <i>
             {comments[0]?.author}
-            <i style={{ color: "lightgray" }}>date here</i>
+            <i style={{ color: "lightgray" }}></i>
           </i>
           <br />
           {comments[0]?.text}

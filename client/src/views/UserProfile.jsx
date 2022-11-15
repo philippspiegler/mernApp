@@ -52,22 +52,30 @@ function UserProfile() {
   return (
     <>
       <NavBar />
-      <h2>my profile</h2>
-      <div className="profile">
-        <p>
-          my username: <b>{userProfile.userName}</b>
-        </p>
-        <p>
-          my email: <b>{userProfile.email}</b>
-        </p>
-        <p>{userProfile.avatarPicture}</p>
+      <div className="profile-div">
+        <h2>my profile</h2>
+
+        <tr>
+          <td>username</td>
+          <td className="profile-td">
+            <b>{userProfile.userName}</b>
+          </td>
+        </tr>
+        <tr>
+          <td>email</td>
+          <td className="profile-td">
+            <b>{userProfile.email}</b>
+          </td>
+        </tr>
+
+        <p>avatar</p>
+        <ImgUpload />
+        {isUserLoggedIn() && (
+          <Button className="logout-button" onClick={logout}>
+            logout
+          </Button>
+        )}
       </div>
-      <ImgUpload />
-      {isUserLoggedIn() && (
-        <Button className="logout-button" onClick={logout}>
-          logout
-        </Button>
-      )}
     </>
   )
 }

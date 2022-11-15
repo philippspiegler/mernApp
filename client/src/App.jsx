@@ -1,6 +1,6 @@
 // import Home from "./views/Home"
 import Landing from "./views/Landing"
-import Main from "./views/Main"
+import Main from "./components/Main"
 import Register from "./views/Register"
 import Login from "./views/Login"
 import UserProfile from "./views/UserProfile"
@@ -16,8 +16,7 @@ function App() {
           <Route path="login" element={<Login />}></Route>
           <Route path="signup" element={<Register />}></Route>
           <Route path="profile" element={<UserProfile />}></Route>
-          <Route path="main" element={<Main />}></Route>
-          <Route path="main/:details" element={<Details />}></Route>
+          <Route path=":details" element={<Details />}></Route>
         </Routes>
       </BrowserRouter>
     </>

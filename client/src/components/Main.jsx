@@ -2,10 +2,9 @@ import React from "react"
 import { Row, Col, Card, Button } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import NavBar from "../components/NavBar"
-import SingleCar from "../components/SingleCar"
+import "../styles.css"
 
-function Main() {
+function Main({ searchCar }) {
   const [cars, setCars] = useState([])
 
   const myFetch = async () => {
@@ -16,36 +15,37 @@ function Main() {
     setCars(myData.allCars)
     // console.log("cars :>> ", cars)
   }
-
+  console.log("searchCar", searchCar)
   useEffect(() => {
     myFetch()
   }, [])
 
   return (
-    <>
-      <div className="main-display">
-        <div>
-          <NavBar />
-        </div>
-        <div>
-          {cars &&
-            cars.map((c, i) => {
-              return (
+    <div className="car-display">
+      {cars &&
+        cars
+          .filter((car) => car.model.includes(searchCar))
+          .map((car, i) => {
+            return (
+              <div>
                 <Row key={i}>
                   <Col>
-                    <Card className="card">
-                      {/* <SingleCar carInfo={c} /> */}
-                      <Link className="link-details" to={`${c._id}`} state={c}>
-                        {c.model}
+                    <Card className="car-display-card">
+                      <Link
+                        className="link-details"
+                        to={`${car._id}`}
+                        state={car}
+                      >
+                        {car.model}
+                        {car.image}
                       </Link>
                     </Card>
                   </Col>
                 </Row>
-              )
-            })}
-        </div>
-      </div>
-    </>
+              </div>
+            )
+          })}
+    </div>
   )
 }
 
