@@ -27,7 +27,11 @@ function Comments() {
     }
   }
 
-  const newComment = async () => {}
+  const newComment = async (e) => {
+    e.preventDefault()
+    // console.log("e.target.value", e.target.value)
+    e.target.value.push()
+  }
 
   useEffect(() => {
     writeComment()
@@ -44,19 +48,16 @@ function Comments() {
         }}
       >
         <p style={{ fontSize: "25px" }}>Comments</p>
-        <Form
-          onSubmit={(e) => {
-            comments.push()
-          }}
-        >
+        <Form onSubmit={newComment}>
           <Form.Control
             className="comment-fcontrol"
             as="textarea"
             placeholder="your comment"
+            onChange={(e) => setComments(e.target.value)}
           />
-          <Button className="comment-button" onClick={writeComment}>
+          {/* <Button className="comment-button" onClick={writeComment}>
             post
-          </Button>
+          </Button> */}
         </Form>
         <p
           style={{

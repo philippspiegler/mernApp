@@ -16,7 +16,7 @@ function Details() {
 
   const myFetch = async () => {
     const myResponse = await fetch(
-      `http://localhost:5000/cars/${carId.details}`
+      `http://localhost:5000/cars/id/${carId.details}`
     )
     console.log("myResponse", myResponse)
     const myData = await myResponse.json()
@@ -24,7 +24,9 @@ function Details() {
     setCars(myData.car)
     console.log("cars :>> ", cars)
   }
-
+  const handleUpdateCar = ({ car }) => {
+    setCars(car)
+  }
   useEffect(() => {
     myFetch()
   }, [])
@@ -33,18 +35,36 @@ function Details() {
     <>
       <NavBar />
       <div className="details-display">
-        <p>
-          <b>{cars?.model}</b>
-          <br />
-          <ImgUpload />
-        </p>
-        <p>{cars?.make}</p>
+        <b style={{ fontSize: "35px" }}>{cars?.model}</b>
+        <p style={{ fontSize: "25px" }}>{cars?.make}</p>
         <p>{cars?.year}</p>
-
-        <p>
-          <i>history:</i> {cars?.history?.history}
+        <br />
+        {cars?.image && (
+          <img
+            className="avatar-img"
+            style={{
+              marginTop: "-1.5em",
+              marginLeft: "-.1em",
+              width: "550px",
+              height: "370px",
+              borderRadius: "10px",
+              margin: "2em",
+              objectFit: "cover",
+            }}
+            src={cars?.image}
+            alt="avatar"
+          />
+        )}
+        <p className="history">
+          <b>history</b>
+          <br /> {cars?.history?.history}
         </p>
         <Comments />
+        <p>Upload your {cars.model} picture</p>{" "}
+        <ImgUpload
+          onImageUploadSuccess={handleUpdateCar}
+          postRoute={`/cars/imageUpload/${carId.details}`}
+        />
       </div>
     </>
   )

@@ -1,6 +1,7 @@
 html, body {
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
 
@@ -18,7 +19,7 @@ html, body {
     background-color: #0ebb9e;
 }
 
-/*signup*/
+/*Signup*/
 
 .signup-forms {
     width: 35vw;
@@ -51,17 +52,31 @@ html, body {
 
 /*Landing Display*/
 
-.car-display {
+ .car-display {
     display: grid;
-    grid-template-columns: repeat(4, 3fr);
+    grid-template-columns: repeat(3, 3fr);
     padding: 2em;
 }
+
+
 
 .car-display-card {
     align-items: center;
     margin: 2em;
+    height: 250px;
+    width: 380px;
 }
 
+.link-details {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.link-details:hover {
+    text-decoration: underline;
+    color: black;
+}
 
 /*Img Upload Component*/
 
@@ -84,6 +99,13 @@ html, body {
    width: 50em;
    margin: auto;
    margin-top: 2em;
+}
+
+.history {
+    background-color: lightslategray;
+    color: white;
+    padding: 0.5em;
+    border-radius: 10px;
 }
 
 /*Comment component*/

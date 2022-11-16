@@ -36,8 +36,14 @@ function Main({ searchCar }) {
                         to={`${car._id}`}
                         state={car}
                       >
+                        <Card.Img
+                          style={{
+                            height: "220px",
+                            objectFit: "cover",
+                          }}
+                          src={car.image}
+                        ></Card.Img>
                         {car.model}
-                        {car.image}
                       </Link>
                     </Card>
                   </Col>

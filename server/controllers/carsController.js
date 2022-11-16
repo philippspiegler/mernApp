@@ -1,4 +1,32 @@
 import carsModel from "../models/wheelsModel.js"
+import { v2 as cloudinary } from "cloudinary"
+
+const uploadCarPicture = async (req, res) => {
+  try {
+    console.log("req.file :>> ", req.file)
+    const uploadResult = await cloudinary.uploader.upload(req.file.path, {
+      folder: "mern",
+    })
+    console.log("uploadResult :>> ", uploadResult)
+    const car = await carsModel.findByIdAndUpdate(
+      { _id: req.params.carId },
+      { image: uploadResult.url },
+      {
+        new: true,
+      }
+    )
+    console.log("car", car)
+    res.status(200).json({
+      message: "image upload successful",
+      car,
+    })
+  } catch (error) {
+    console.log("error", error)
+    res
+      .status(500)
+      .json({ message: "image couldn't be uploaded", error: error })
+  }
+}
 
 const getAllCars = async (req, res) => {
   const allCars = await carsModel.find({}).populate({ path: "history" })
@@ -36,4 +64,4 @@ const getCarById = async (req, res) => {
   })
 }
 
-export { getAllCars, getCarById }
+export { getAllCars, getCarById, uploadCarPicture }

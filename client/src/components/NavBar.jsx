@@ -25,7 +25,6 @@ function NavBar({ searchCar, setSearchCar }) {
     // console.log("search input")
     var requestOptions = {
       method: "GET",
-      redirect: "follow",
     }
 
     const searchAllCars = await fetch(
@@ -97,6 +96,16 @@ function NavBar({ searchCar, setSearchCar }) {
                   <Button className="button">sign up</Button>
                 </Link>
               )}
+              {/* {isUserLoggedIn() && (
+                <Link to="signup" style={{ textDecoration: "none" }}>
+                  <Button
+                    className="btn"
+                    style={{ backgroundColor: "#f54b42", borderStyle: "none" }}
+                  >
+                    upload my car
+                  </Button>
+                </Link>
+              )} */}
               <NavDropdown.Divider />
             </Nav>
           </Navbar.Collapse>

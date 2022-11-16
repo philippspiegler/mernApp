@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react"
 import { Button, Form } from "react-bootstrap"
 
-function ImgUpload() {
+function ImgUpload({ postRoute, onImageUploadSuccess }) {
   const [selectedFile, setSelectedFile] = useState(null)
   const [newUser, setNewUser] = useState({})
 
@@ -22,18 +22,18 @@ function ImgUpload() {
     }
     try {
       const response = await fetch(
-        "http://localhost:5000/users/imageUpload",
+        `http://localhost:5000${postRoute}`,
         requestOptions
       )
       const result = await response.json()
       console.log("result", result)
-      setNewUser({ ...newUser, avatarPicture: result.imageUrl })
+      onImageUploadSuccess(result)
     } catch (error) {}
   }
 
   return (
     <>
-      {newUser.avatarPicture && (
+      {/* {newUser.avatarPicture && (
         <img
           className="avatar-img"
           style={{
@@ -46,7 +46,7 @@ function ImgUpload() {
           src={newUser.avatarPicture}
           alt="avatar"
         />
-      )}
+      )} */}
       <Form className="avatar-form">
         <input type="file" onChange={attachFileHandler} />
         <Button className="img-upload-button" onClick={submitForm}>

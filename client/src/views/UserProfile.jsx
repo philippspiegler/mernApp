@@ -45,6 +45,9 @@ function UserProfile() {
     redirect("/")
   }
 
+  const onImageUploadSuccess = (data) => {
+    console.log("data :>> ", data)
+  }
   useEffect(() => {
     profile()
   }, [])
@@ -69,7 +72,24 @@ function UserProfile() {
         </tr>
 
         <p>avatar</p>
-        <ImgUpload />
+        {userProfile.avatarPicture && (
+          <img
+            className="avatar-img"
+            style={{
+              width: "250px",
+              height: "170px",
+              borderRadius: "10px",
+              margin: "2em",
+              objectFit: "cover",
+            }}
+            src={userProfile.avatarPicture}
+            alt="avatar"
+          />
+        )}
+        <ImgUpload
+          onImageUploadSuccess={onImageUploadSuccess}
+          postRoute={"/users/imageUpload"}
+        />
         {isUserLoggedIn() && (
           <Button className="logout-button" onClick={logout}>
             logout
