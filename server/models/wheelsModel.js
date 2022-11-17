@@ -7,6 +7,7 @@ const carsSchema = new mongoose.Schema({
   image: { type: String, required: true },
   history: { type: mongoose.Schema.Types.ObjectId, ref: "story" },
   image: [{ type: String }],
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comment" }],
 })
 
 const carsModel = mongoose.model("car", carsSchema)

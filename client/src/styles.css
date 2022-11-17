@@ -102,8 +102,8 @@ html, body {
 }
 
 .history {
-    background-color: lightslategray;
-    color: white;
+    background-color: #fcf0f0;
+    color: rgb(105, 104, 104);
     padding: 0.5em;
     border-radius: 10px;
 }
@@ -129,6 +129,13 @@ html, body {
 
  .comment-button:active {
     background-color: #0ebb9e;
+}
+
+.comment-section {
+    background-color: lightgray;
+    border-radius: 10px;
+    margin-bottom: 2em;
+    margin-top: 1em;
 }
 
 /*User Profile*/
@@ -157,3 +164,5 @@ html, body {
  .profile-td {
     padding-left: 1em;
  }
+
+ 

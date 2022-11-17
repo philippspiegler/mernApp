@@ -27,6 +27,34 @@ function Details() {
   const handleUpdateCar = ({ car }) => {
     setCars(car)
   }
+  const writeComment = async (text) => {
+    console.log("text :>> ", text)
+    console.log("carId", carId)
+    const token = localStorage.getItem("token")
+    let myHeaders = new Headers()
+    myHeaders.append("Authorization", `Bearer ${token}`)
+    let urlencoded = new URLSearchParams()
+    urlencoded.append("text", text)
+    urlencoded.append("carId", carId.details)
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+    }
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/comments/add",
+        requestOptions
+      )
+      if (!response.error) myFetch()
+      const myComments = await response.json()
+      console.log("comments in FETCH :>> ", myComments)
+    } catch (error) {
+      console.log("error getting profile>>", error)
+    }
+  }
   useEffect(() => {
     myFetch()
   }, [])
@@ -59,8 +87,20 @@ function Details() {
           <b>history</b>
           <br /> {cars?.history?.history}
         </p>
-        <Comments />
+        <Comments writeComment={writeComment} />
         <p>Upload your {cars.model} picture</p>{" "}
+        {cars.comments &&
+          cars.comments.map((comment) => {
+            return (
+              <div>
+                <p>
+                  {comment.authorId.userName}
+                  <span style={{ color: "lightgray" }}> on {comment.date}</span>
+                </p>
+                <p>{comment.text}</p>
+              </div>
+            )
+          })}
         <ImgUpload
           onImageUploadSuccess={handleUpdateCar}
           postRoute={`/cars/imageUpload/${carId.details}`}

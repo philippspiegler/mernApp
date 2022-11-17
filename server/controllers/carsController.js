@@ -29,7 +29,16 @@ const uploadCarPicture = async (req, res) => {
 }
 
 const getAllCars = async (req, res) => {
-  const allCars = await carsModel.find({}).populate({ path: "history" })
+  const allCars = await carsModel
+    .find({})
+    .populate({
+      path: "comments",
+      populate: {
+        path: "authorId",
+        model: "user",
+      },
+    })
+    .populate({ path: "history" })
   console.log("allCars>>>", allCars)
   try {
     if (allCars.length === 0) {
@@ -56,6 +65,13 @@ const getCarById = async (req, res) => {
   console.log("req.params :>> ", req.params)
   const carById = await carsModel
     .findById({ _id: req.params.carId })
+    .populate({
+      path: "comments",
+      populate: {
+        path: "authorId",
+        model: "user",
+      },
+    })
     .populate({ path: "history" })
   console.log("carById :>> ", carById)
   //response to front end (fetch it there)
