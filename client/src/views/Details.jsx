@@ -88,7 +88,6 @@ function Details() {
           <br /> {cars?.history?.history}
         </p>
         <Comments writeComment={writeComment} />
-        <p>Upload your {cars.model} picture</p>{" "}
         {cars.comments &&
           cars.comments.map((comment) => {
             return (
@@ -101,6 +100,7 @@ function Details() {
               </div>
             )
           })}
+        <p>Upload your {cars.model} picture</p>{" "}
         <ImgUpload
           onImageUploadSuccess={handleUpdateCar}
           postRoute={`/cars/imageUpload/${carId.details}`}

@@ -52,7 +52,7 @@ function NavBar({ searchCar, setSearchCar }) {
               <Nav.Link href="">
                 {" "}
                 {isUserLoggedIn() && (
-                  <Link className="nav-link" to="/main">
+                  <Link className="nav-link" to="/">
                     Cars
                   </Link>
                 )}
@@ -95,17 +95,7 @@ function NavBar({ searchCar, setSearchCar }) {
                 <Link to="signup" style={{ textDecoration: "none" }}>
                   <Button className="button">sign up</Button>
                 </Link>
-              )}
-              {/* {isUserLoggedIn() && (
-                <Link to="signup" style={{ textDecoration: "none" }}>
-                  <Button
-                    className="btn"
-                    style={{ backgroundColor: "#f54b42", borderStyle: "none" }}
-                  >
-                    upload my car
-                  </Button>
-                </Link>
-              )} */}
+              )}{" "}
               <NavDropdown.Divider />
             </Nav>
           </Navbar.Collapse>

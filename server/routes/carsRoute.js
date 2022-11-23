@@ -16,7 +16,4 @@ router.post(
   uploadCarPicture
 )
 
-// router.post("/upload", uploadCar)
-// router.post("/:updateUser", updateUser) S3E3
-
 export default router

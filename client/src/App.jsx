@@ -6,6 +6,9 @@ import Login from "./views/Login"
 import UserProfile from "./views/UserProfile"
 import Details from "./views/Details"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { AuthContext } from "./context/AuthContext"
+import { useContext } from "react"
+import NavBar from "./components/NavBar"
 
 function App() {
   return (

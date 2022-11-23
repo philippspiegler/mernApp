@@ -33,6 +33,20 @@ function ImgUpload({ postRoute, onImageUploadSuccess }) {
 
   return (
     <>
+      {/* {newUser.avatarPicture && (
+        <img
+          className="avatar-img"
+          style={{
+            width: "250px",
+            height: "170px",
+            borderRadius: "10px",
+            margin: "2em",
+            objectFit: "cover",
+          }}
+          src={newUser.avatarPicture}
+          alt="avatar"
+        />
+      )} */}
       <Form className="avatar-form">
         <input type="file" onChange={attachFileHandler} />
         <Button className="img-upload-button" onClick={submitForm}>

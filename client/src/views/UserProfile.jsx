@@ -42,7 +42,6 @@ function UserProfile() {
   }
   const logout = () => {
     localStorage.removeItem("token")
-    redirect("/")
   }
 
   const onImageUploadSuccess = (data) => {
