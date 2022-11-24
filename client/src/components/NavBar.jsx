@@ -87,7 +87,7 @@ function NavBar({ searchCar, setSearchCar }) {
                 )}
               </Nav.Link>
               {!isUserLoggedIn() && (
-                <Link to="login" style={{ textDecoration: "none" }}>
+                <Link to="/login" style={{ textDecoration: "none" }}>
                   <Button className="button">login</Button>
                 </Link>
               )}
